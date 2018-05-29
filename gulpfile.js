@@ -4,6 +4,7 @@ const less = require("gulp-less");
 const path = require("path");
 const inlinesource = require("gulp-inline-source");
 var htmlmin = require("gulp-htmlmin");
+const del = require("del");
 
 gulp.task("minify", function() {
   return gulp
@@ -25,7 +26,11 @@ gulp.task("inlinesource", () => {
     .pipe(gulp.dest("./out/concatenated"));
 });
 
-gulp.task("build", gulp.series("inlinesource", "minify"));
+gulp.task("clean", function() {
+  return del("out/**", { force: true });
+});
+
+gulp.task("build", gulp.series("clean", "inlinesource", "minify"));
 
 gulp.task("less", () =>
   gulp
