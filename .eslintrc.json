@@ -1,0 +1,8 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["eslint-config-airbnb-es5", "prettier"],
+  "env": {
+    "browser": true
+  },
+  "rules": { "func-names": ["error", "never"] }
+}
