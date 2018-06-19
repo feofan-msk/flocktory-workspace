@@ -12,7 +12,7 @@ gulp.task("minify", function() {
     .pipe(
       htmlmin({ collapseWhitespace: true, minifyCSS: true, minifyJS: true })
     )
-    .pipe(gulp.dest("./out/build"));
+    .pipe(gulp.dest("./out"));
 });
 
 gulp.task("inlinesource", () => {

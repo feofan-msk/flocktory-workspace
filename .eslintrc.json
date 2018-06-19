@@ -4,5 +4,8 @@
   "env": {
     "browser": true
   },
-  "rules": { "func-names": ["error", "never"] }
+  "rules": { "func-names": ["error", "never"] },
+  "globals": {
+    "widget": false
+  }
 }
