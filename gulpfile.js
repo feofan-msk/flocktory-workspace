@@ -26,11 +26,21 @@ gulp.task("inlinesource", () => {
     .pipe(gulp.dest("./out/concatenated"));
 });
 
-gulp.task("clean", function() {
+gulp.task("cleanOut", function() {
   return del("out/**", { force: true });
 });
 
-gulp.task("build", gulp.series("clean", "inlinesource", "minify"));
+gulp.task("build", gulp.series("cleanOut", "inlinesource", "minify"));
+
+gulp.task("cleanSrc", function() {
+  return del(["src/**", "!src"], { force: true });
+});
+
+gulp.task("copyBoilerplate", function() {
+  return gulp.src("../boilerplate/**").pipe(gulp.dest("./src"));
+});
+
+gulp.task("newProject", gulp.series("cleanSrc", "copyBoilerplate"));
 
 gulp.task("less", () =>
   gulp
