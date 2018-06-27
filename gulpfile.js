@@ -37,7 +37,7 @@ gulp.task("cleanSrc", function() {
 });
 
 gulp.task("copyBoilerplate", function() {
-  return gulp.src("../boilerplate/**").pipe(gulp.dest("./src"));
+  return gulp.src("./boilerplate/**").pipe(gulp.dest("./src"));
 });
 
 gulp.task("newProject", gulp.series("cleanSrc", "copyBoilerplate"));

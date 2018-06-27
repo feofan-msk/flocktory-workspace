@@ -17,7 +17,7 @@
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
   <link rel="stylesheet"
-        href="styles.css">
+        href="css/styles.css">
 </head>
 
 <body>
@@ -100,10 +100,6 @@
   <script>
     // document.addEventListener("DOMContentLoaded", function() {});
 
-    function qs(s) {
-      return document.querySelector(s);
-    }
-
     widget.ready(function () {
       qs(".js-to-terms").addEventListener("click", function () {
         widget.setScreen("terms");
@@ -138,6 +134,11 @@
         event.preventDefault();
       });
     });
+
+
+    function qs(s) {
+      return document.querySelector(s);
+    }
   </script>
 
 </body>
