@@ -1,6 +1,4 @@
-"use strict";
-
-function leftPad(str, len, ch) {
+export default function leftPad(str, len, ch) {
   var cache = [
     "",
     " ",
