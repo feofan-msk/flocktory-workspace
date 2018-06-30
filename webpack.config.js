@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  mode: "development",
+  mode: "none",
   entry: "./src/js/index.js",
   output: {
     path: path.resolve(__dirname, "public/js"),
@@ -20,5 +20,8 @@ module.exports = {
         }
       }
     ]
+  },
+  devServer: {
+    open: true
   }
 };
