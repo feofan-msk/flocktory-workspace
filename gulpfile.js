@@ -1,19 +1,19 @@
 const gulp = require("gulp");
+const path = require("path");
 const browserSync = require("browser-sync").create();
 const less = require("gulp-less");
-const path = require("path");
 const inlinesource = require("gulp-inline-source");
-var htmlmin = require("gulp-htmlmin");
+const htmlmin = require("gulp-htmlmin");
 const del = require("del");
 
-gulp.task("minify", function() {
-  return gulp
-    .src("./out/concatenated/*.html")
+gulp.task("minify", () =>
+  gulp
+    .src("./out/*.html")
     .pipe(
       htmlmin({ collapseWhitespace: true, minifyCSS: true, minifyJS: true })
     )
-    .pipe(gulp.dest("./out"));
-});
+    .pipe(gulp.dest("./out"))
+);
 
 gulp.task("inlinesource", () => {
   const options = {
@@ -23,22 +23,18 @@ gulp.task("inlinesource", () => {
   return gulp
     .src("./src/*.html")
     .pipe(inlinesource(options))
-    .pipe(gulp.dest("./out/concatenated"));
+    .pipe(gulp.dest("./out"));
 });
 
-gulp.task("cleanOut", function() {
-  return del("out/**", { force: true });
-});
+gulp.task("cleanOut", () => del("out/**", { force: true }));
 
-gulp.task("build", gulp.series("cleanOut", "inlinesource", "minify"));
+gulp.task("build", gulp.series("cleanOut", "inlinesource"));
 
-gulp.task("cleanSrc", function() {
-  return del(["src/**", "!src"], { force: true });
-});
+gulp.task("cleanSrc", () => del(["src/**", "!src"], { force: true }));
 
-gulp.task("copyBoilerplate", function() {
-  return gulp.src("./boilerplate/**").pipe(gulp.dest("./src"));
-});
+gulp.task("copyBoilerplate", () =>
+  gulp.src("./boilerplate/**").pipe(gulp.dest("./src"))
+);
 
 gulp.task("newProject", gulp.series("cleanSrc", "copyBoilerplate"));
 
@@ -66,8 +62,8 @@ gulp.task("browserSync", callback => {
 gulp.task(
   "watch",
   gulp.series(gulp.parallel("browserSync", "less"), () => {
-    browserSync.watch("src/**/**/*.*").on("change", browserSync.reload);
-    gulp.watch("src/**/**/*.*", gulp.series("build"));
-    gulp.watch("src/less/**/*.less", gulp.series("less"));
+    browserSync.watch("src").on("change", browserSync.reload);
+    gulp.watch(["src", "!src/less"], gulp.series("build"));
+    gulp.watch("src/less", gulp.series("less"));
   })
 );

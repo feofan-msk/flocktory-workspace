@@ -1,10 +1,10 @@
 {
   "parser": "babel-eslint",
-  "extends": ["eslint-config-airbnb-es5", "prettier"],
+  "extends": ["eslint-config-airbnb-base", "prettier"],
   "env": {
     "browser": true
   },
-  "rules": { "func-names": ["error", "never"] },
+  "rules": { "func-names": ["error", "never"], "no-new": "warn" },
   "globals": {
     "widget": false
   }
