@@ -5,6 +5,7 @@ const less = require("gulp-less");
 const inlinesource = require("gulp-inline-source");
 const htmlmin = require("gulp-htmlmin");
 const del = require("del");
+const babel = require("gulp-babel");
 
 gulp.task("minify", () =>
   gulp
@@ -36,7 +37,7 @@ gulp.task("copyBoilerplate", () =>
   gulp.src("./boilerplate/**").pipe(gulp.dest("./src"))
 );
 
-gulp.task("newProject", gulp.series("cleanSrc", "copyBoilerplate"));
+gulp.task("newProject", gulp.series("cleanSrc", "cleanOut", "copyBoilerplate"));
 
 gulp.task("less", () =>
   gulp
@@ -46,7 +47,7 @@ gulp.task("less", () =>
         paths: [path.join(__dirname, "less", "includes")]
       })
     )
-    .pipe(gulp.dest("./src/css"))
+    .pipe(gulp.dest("./src"))
     .pipe(browserSync.stream())
 );
 
@@ -59,11 +60,41 @@ gulp.task("browserSync", callback => {
   callback();
 });
 
+gulp.task("transpile", () =>
+  gulp
+    .src("src/js/index.js")
+    .pipe(
+      babel({
+        presets: ["env"]
+      })
+    )
+    .pipe(gulp.dest("src"))
+);
+
+// launch a server with hot reload
+gulp.task(
+  "start",
+  gulp.series(
+    gulp.series(gulp.parallel("less", "transpile"), "browserSync"),
+    done => {
+      browserSync
+        .watch(["src", "!src/less", "!src/js"])
+        .on("change", browserSync.reload);
+
+      // looks for changes
+      gulp.watch("src/less", gulp.series("less"));
+      gulp.watch("src/js", gulp.series("transpile"));
+      done();
+    }
+  )
+);
+
 gulp.task(
   "watch",
-  gulp.series(gulp.parallel("browserSync", "less"), () => {
-    browserSync.watch("src").on("change", browserSync.reload);
-    gulp.watch(["src", "!src/less"], gulp.series("build"));
-    gulp.watch("src/less", gulp.series("less"));
+  gulp.series(done => {
+    gulp.watch(["src", "!src/less", "!src/js"], gulp.series("build"));
+    done();
   })
 );
+
+gulp.task("default", gulp.series("start", "watch"));
