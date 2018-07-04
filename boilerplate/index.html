@@ -23,23 +23,25 @@
 
 <body>
   <section class="widget">
-    <section class="login"
-             data-fl-screen="1">
+    <section class="screen login"
+             data-fl-screen="login">
       <a class="close"
          data-fl-close
-         data-fl-track="close-screen-1">&times;</a>
+         data-fl-track="close-screen-login">&times;</a>
 
       <form class="form">
         <div>
           <label for="name">Name</label>
-          <input type="text"
+          <input class="form__input"
+                 type="text"
                  id="name"
                  name="user_name"
                  required>
         </div>
         <div>
           <label for="mail">E-mail</label>
-          <input type="email"
+          <input class="form__input"
+                 type="email"
                  id="mail"
                  name="user_mail"
                  required
@@ -47,7 +49,8 @@
         </div>
         <div>
           <label for="tel">Phone</label>
-          <input type="tel"
+          <input class="form__input"
+                 type="tel"
                  id="tel"
                  name="user_phone"
                  required
@@ -57,7 +60,8 @@
           <label for="checkbox">Agree with</label>
           <a class="js-to-terms"
              data-fl-track="click-button-to-terms">conditions</a>:
-          <input type="checkbox"
+          <input class="form__checkbox"
+                 type="checkbox"
                  id="checkbox"
                  name="checkbox"
                  required>
@@ -69,7 +73,7 @@
       </form>
     </section>
 
-    <section class="terms"
+    <section class="screen terms"
              data-fl-screen="terms">
       <a class="close"
          data-fl-close
@@ -79,10 +83,11 @@
       <p class="terms__text"></p>
 
       <button class="terms__button js-to-login"
+              type="button"
               data-fl-track="click-button-to-login"></button>
     </section>
 
-    <section class="success"
+    <section class="screen success"
              data-fl-screen="success">
       <a class="close"
          data-fl-close

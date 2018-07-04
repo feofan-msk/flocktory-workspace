@@ -6,6 +6,7 @@ const inlinesource = require("gulp-inline-source");
 const htmlmin = require("gulp-htmlmin");
 const del = require("del");
 const babel = require("gulp-babel");
+const plumber = require("gulp-plumber");
 
 gulp.task("minify", () =>
   gulp
@@ -42,6 +43,7 @@ gulp.task("newProject", gulp.series("cleanSrc", "cleanOut", "copyBoilerplate"));
 gulp.task("less", () =>
   gulp
     .src("./src/less/**/*.less")
+    .pipe(plumber())
     .pipe(
       less({
         paths: [path.join(__dirname, "less", "includes")]
@@ -63,6 +65,7 @@ gulp.task("browserSync", callback => {
 gulp.task("transpile", () =>
   gulp
     .src("src/js/index.js")
+    .pipe(plumber())
     .pipe(
       babel({
         presets: ["env"]
