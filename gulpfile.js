@@ -35,7 +35,7 @@ gulp.task("build", gulp.series("cleanOut", "inlinesource"));
 gulp.task("cleanSrc", () => del(["src/**", "!src"], { force: true }));
 
 gulp.task("copyBoilerplate", () =>
-  gulp.src("./boilerplate/**").pipe(gulp.dest("./src"))
+  gulp.src("./boilerplate/email/**").pipe(gulp.dest("./src"))
 );
 
 gulp.task("newProject", gulp.series("cleanSrc", "cleanOut", "copyBoilerplate"));

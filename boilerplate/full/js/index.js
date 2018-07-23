@@ -20,7 +20,7 @@ widget.ready(() => {
     noImmediatePrefix: true
   });
 
-  const form = document.querySelector(".form");
+  const form = qs(".form");
 
   form.addEventListener("submit", event => {
     const name = form.elements.user_name.value;

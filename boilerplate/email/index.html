@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible"
+        content="IE=Edge">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <meta name="widget-config"
+        data-type="popup"
+        data-width="100%"
+        data-height="auto"
+        data-z-index="999999"
+        data-autoshow="true">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+  <link rel="stylesheet"
+        href=" https://assets.flocktory.com/uploads/clients/2407/c9bc1cc6-e93d-420e-8fe5-bc6f980598a1_Houschka%20Rounded.css ">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&amp;subset=cyrillic-ext"
+        rel="stylesheet">
+
+  <link rel="stylesheet"
+        href="styles.css"
+        inline>
+</head>
+
+<body>
+  <section class="widget">
+    <section class="screen login"
+             data-fl-screen="login">
+      <a class="close"
+         data-fl-close
+         data-fl-track="close-screen-login">&times;</a>
+
+      <h4 class="widget__heading">ТОЛЬКО САМОЕ ВАЖНОЕ!</h4>
+
+      <p class="widget__description">Откройте доступ к персональному оповещению о скидках, новинках и акциях.</p>
+
+      <form class="form js-form">
+        <input class="form__input"
+               type="email"
+               id="mail"
+               name="user_mail"
+               placeholder="Введите email"
+               required
+               pattern="([\+\w-]+(?:\.[\+\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)">
+
+        <label class="form__checkbox checkbox">Хочу получать рассылку акций и новостей
+
+          <input class="checkbox__input js-checkbox"
+                 name="checkbox"
+                 type="checkbox"
+                 checked
+                 required>
+          <span class="checkbox__checkmark"></span>
+        </label>
+
+        <button class="form__button"
+                type="submit"
+                data-fl-track="click-button">Открыть доступ</button>
+      </form>
+    </section>
+
+    <section class="screen success"
+             data-fl-screen="success">
+      <a class="close"
+         data-fl-close
+         data-fl-track="close-screen-success">&times;</a>
+
+      <h4 class="widget__heading">Спасибо!</h4>
+    </section>
+  </section>
+
+  <script src="index.js"
+          inline></script>
+
+</body>
+
+</html>
